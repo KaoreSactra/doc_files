@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>docfiles</title>
+    <meta name="description" content="Leitor de documentação em Markdown." />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="docfiles" />
+    <meta property="og:title" content="docfiles" />
+    <meta property="og:description" content="Leitor de documentação em Markdown." />
+    <meta property="og:image" content="/pwa-512.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script>
+      // Aplica as configurações salvas antes da primeira pintura (evita piscar o tema).
+      // Mantido em sincronia com src/lib/settings.js -> apply().
+      try {
+        var el = document.documentElement;
+        var s = JSON.parse(localStorage.getItem('docfiles:settings')) || {};
+        if (!s.mode) s.mode = JSON.parse(localStorage.getItem('docfiles:theme')) || 'system';
+        for (var k in s) el.dataset[k] = String(s[k]);
+        if (s.theme === 'cyber' || s.mode === 'dark' || (s.mode === 'system' && matchMedia('(prefers-color-scheme: dark)').matches))
+          el.classList.add('dark');
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

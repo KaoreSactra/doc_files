@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    image: docfiles:latest
+    ports:
+      - "${PORT:-8080}:80"
+    restart: unless-stopped
